@@ -7,7 +7,7 @@
 #endif
 
 template< class Ty, class Fn >
-LOCAL_INLINE size_t io::trim_start(Ty&& str, Fn&& fn, io::Range rng) {
+LOCAL_INLINE size_t io::trimStart(Ty&& str, Fn&& fn, io::Range rng) {
 	size_t i = rng.start;
 	//	keeps going forward until invalid character or end of string
 	for (; i < rng.end; i++)
@@ -18,7 +18,7 @@ LOCAL_INLINE size_t io::trim_start(Ty&& str, Fn&& fn, io::Range rng) {
 	return i;
 }
 template< class Ty, class Fn >
-LOCAL_INLINE size_t io::trim_end(Ty&& str, Fn&& fn, io::Range rng) {
+LOCAL_INLINE size_t io::trimEnd(Ty&& str, Fn&& fn, io::Range rng) {
 	size_t i = rng.end;
 	//	keeps going back until invalid character or start of string
 	for (; i > rng.start; i--)
@@ -34,9 +34,9 @@ LOCAL_INLINE io::Range io::trim(Ty&& str, Fn&& fn, io::Range rng) {
 	//	results
 	io::Range res{ rng };
 	//	start
-	res.start = trim_start(str, fn, res);
+	res.start = trimStart(str, fn, res);
 	//	end
-	res.end = trim_end(str, fn, res);
+	res.end = trimEnd(str, fn, res);
 	//	returns values
 	return res;
 }
@@ -63,6 +63,18 @@ LOCAL_INLINE io::Range io::parse(Ty &&str, Fn &&fn, io::Range range) {
 			break;
 	}
 	//	returns res
+	return res;
+}
+
+
+template< class Fn >
+LOCAL_INLINE void io::Line::trim(Fn&& fn) {
+	range = io::trim(line, std::forward<Fn>(fn), range);
+}
+template< class Fn >
+LOCAL_INLINE io::Range io::Line::cut(Fn&& fn) {
+	auto res = parse(line, std::forward<Fn>(fn), range);
+	range.start = res.end;
 	return res;
 }
 
