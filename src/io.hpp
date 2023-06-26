@@ -1,4 +1,3 @@
-#include "io.h"
 #if !defined(ENV_INLINE_DEF)
 #if defined(LOCAL_INLINE)
 #undef LOCAL_INLINE
@@ -65,7 +64,6 @@ LOCAL_INLINE io::Range io::parse(Ty &&str, Fn &&fn, io::Range range) {
 	//	returns res
 	return res;
 }
-
 
 template< class Fn >
 LOCAL_INLINE void io::Line::trim(Fn&& fn) {
