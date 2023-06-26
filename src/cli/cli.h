@@ -3,39 +3,15 @@
 #ifndef INCLUDE_IO_H
 #define INCLUDE_IO_H
 
-#include <string>
+#include "core.h"
+
+#include "strman.h"
+
 #include <istream>
 #include <functional>
 
-namespace io
+namespace ENV_NSPC
 {
-
-	struct Range
-	{
-		size_t start, end;
-
-		size_t length() noexcept;
-		std::string substr(const std::string& str);
-	};
-
-	//
-	//	String manipulation
-	//
-
-	template< class Ty, class Fn >
-	size_t trimStart(Ty&& str, Fn&& fn, io::Range range);
-	template< class Ty, class Fn >
-	size_t trimEnd(Ty&& str, Fn&& fn, io::Range range);
-
-	template< class Ty, class Fn >
-	io::Range trim(Ty&& str, Fn&& fn, io::Range range);
-
-	template< class Ty, class Fn >
-	io::Range parse(Ty&& str, Fn&& fn, io::Range range);
-
-	//	
-	//	Command-Line Interface
-	//
 
 	class Line
 	{
@@ -51,9 +27,9 @@ namespace io
 		template< class Fn >
 		void trim(Fn&& fn);
 		template< class Fn >
-		io::Range cut(Fn&& fn);
+		horizon::Range cut(Fn&& fn);
 
-		io::Range range;
+		horizon::Range range;
 		std::string line;	
 	};
 

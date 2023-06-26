@@ -1,13 +1,14 @@
-#include "io.h"
+#include "cli/io.h"
+
 #include <iostream>
 
 int main(int argc, char const *argv[]) {
-	io::CLI cli;
+	horizon::CLI cli;
 
 	cli.in.rdbuf( std::cin.rdbuf() );
 	cli.in.clear();
 
-	cli.listener = [](io::Line line) {
+	cli.listener = [](horizon::Line line) {
 		auto cmd = line.cut(std::isgraph);
 
 		std::cout << "Command: \"" << cmd.substr(line.line) << "\"\n";

@@ -1,4 +1,4 @@
-#include "io.h"
+#include "cli.h"
 
 #if !defined(ENV_INLINE_DEF)
 #if defined(LOCAL_INLINE)
@@ -7,27 +7,27 @@
 #define LOCAL_INLINE
 #endif
 
-LOCAL_INLINE size_t io::Range::length() noexcept {
+LOCAL_INLINE size_t ENV_NSPC::Range::length() noexcept {
 	return end - start;	
 }
-LOCAL_INLINE std::string io::Range::substr(const std::string& str) {
+LOCAL_INLINE std::string ENV_NSPC::Range::substr(const std::string& str) {
 	return str.substr(start, length());
 }
 
-LOCAL_INLINE io::Line::Line() noexcept( _noex_cstr_def )
+LOCAL_INLINE ENV_NSPC::Line::Line() noexcept( _noex_cstr_def )
 	: line{ } {
-	range = io::Range{ 0, line.length() };
+	range = ENV_NSPC::Range{ 0, line.length() };
 }
-LOCAL_INLINE io::Line::Line(std::string &&str) noexcept( _noex_cstr_str_mov )
+LOCAL_INLINE ENV_NSPC::Line::Line(std::string &&str) noexcept( _noex_cstr_str_mov )
 	: line{ std::move(str) } {
-	range = io::Range{ 0, line.length() };
+	range = ENV_NSPC::Range{ 0, line.length() };
 }
 
-LOCAL_INLINE io::CLI::CLI() noexcept
+LOCAL_INLINE ENV_NSPC::CLI::CLI() noexcept
 	: in{ nullptr }, listener{ nullptr } {
 }
 
-LOCAL_INLINE bool io::CLI::start() {
+LOCAL_INLINE bool ENV_NSPC::CLI::start() {
 	//	invalid input stream
 	if (!in.good())
 		return false;
@@ -48,7 +48,7 @@ LOCAL_INLINE bool io::CLI::start() {
 	//	returns true at the end
 	return true;
 }
-LOCAL_INLINE std::string io::CLI::_readLine() {
+LOCAL_INLINE std::string ENV_NSPC::CLI::_readLine() {
 	std::string res;
 	std::getline(in, res);
 

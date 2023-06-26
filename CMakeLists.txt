@@ -27,9 +27,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
+include_directories(src)
+
 add_executable(Horizon
 	src/main.cpp
-	src/io.cpp
+	src/cli/strman.cpp
+	src/cli/cli.cpp
 )
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
