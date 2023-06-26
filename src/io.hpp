@@ -11,7 +11,7 @@ LOCAL_INLINE size_t io::trim_start(Ty&& str, Fn&& fn, io::Range rng) {
 	size_t i = rng.start;
 	//	keeps going forward until invalid character or end of string
 	for (; i < rng.end; i++)
-		if (static_cast<bool>(fn(str[i])))
+		if (!static_cast<bool>(fn(str[i])))
 			//	invalid character
 			break;
 	//	returns last position
@@ -22,7 +22,7 @@ LOCAL_INLINE size_t io::trim_end(Ty&& str, Fn&& fn, io::Range rng) {
 	size_t i = rng.end;
 	//	keeps going back until invalid character or start of string
 	for (; i > rng.start; i--)
-		if (static_cast<bool>(fn(str[i - 1])))
+		if (!static_cast<bool>(fn(str[i - 1])))
 			//	invalid character
 			break;
 	//	returns last position
