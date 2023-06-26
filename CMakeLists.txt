@@ -29,6 +29,7 @@ set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 add_executable(Horizon
 	src/main.cpp
+	src/io.cpp
 )
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
