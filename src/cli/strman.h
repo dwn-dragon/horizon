@@ -3,7 +3,7 @@
 #ifndef INCLUDE_STRINGS_H
 #define INCLUDE_STRINGS_H
 
-#include "core.h"
+#include "env.h"
 
 #include <string>
 

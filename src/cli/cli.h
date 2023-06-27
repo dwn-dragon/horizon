@@ -3,7 +3,7 @@
 #ifndef INCLUDE_IO_H
 #define INCLUDE_IO_H
 
-#include "core.h"
+#include "env.h"
 
 #include "strman.h"
 
@@ -52,6 +52,6 @@ namespace ENV_NSPC
 
 }
 
-#include "io.hpp"
+#include "cli.hpp"
 
 #endif	//	Include guard
