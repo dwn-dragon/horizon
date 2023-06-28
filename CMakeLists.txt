@@ -33,6 +33,7 @@ add_executable(Horizon
 	src/main.cpp
 	src/cli/strman.cpp
 	src/cli/cli.cpp
+	src/map/map.cpp
 )
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
