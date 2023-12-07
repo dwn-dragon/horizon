@@ -27,8 +27,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
-add_executable(Horizon
-	src/main.cpp
+add_subdirectory(libs)
+
+add_executable(Horizon)
+target_link_libraries(Horizon gl3w glfw glm)
+target_sources(Horizon
+	PRIVATE src/main.cpp
 )
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
