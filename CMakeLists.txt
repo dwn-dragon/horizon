@@ -32,7 +32,15 @@ add_subdirectory(libs)
 add_executable(Horizon)
 target_link_libraries(Horizon gl3w glfw glm)
 target_sources(Horizon
+	PRIVATE src/gfx/core.cpp
+	PRIVATE src/gfx/shaders.cpp
 	PRIVATE src/main.cpp
+)
+
+add_custom_command(
+	TARGET Horizon POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_directory
+	${CMAKE_SOURCE_DIR}/res/ $<TARGET_FILE_DIR:Horizon>
 )
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
